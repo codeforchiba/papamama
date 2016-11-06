@@ -343,47 +343,43 @@ $('#mainPage').on('pageshow', function() {
 		conditions = [];
 		ninka = ninkagai = kindergarten = false;
 
-		// 認可保育園
-		if($('#ninkaOpenTime option:selected').val() !== "") {
-			conditions['ninkaOpenTime'] = $('#ninkaOpenTime option:selected').val();
-			ninka = true;
+		// 保育園
+		if($('#OpenTime option:selected').val() !== "") {
+			conditions['OpenTime'] = $('#OpenTime option:selected').val();
+			ninka = ninkagai = true;
 		}
-		if($('#ninkaCloseTime option:selected').val() !== "") {
-			conditions['ninkaCloseTime'] = $('#ninkaCloseTime option:selected').val();
-			ninka = true;
+		if($('#CloseTime option:selected').val() !== "") {
+			conditions['CloseTime'] = $('#CloseTime option:selected').val();
+			ninka = ninkagai = true;
 		}
-		if($('#ninkaIchijiHoiku').prop('checked')) {
-			conditions['ninkaIchijiHoiku'] = 1;
-			ninka = true;
+		if($('#IchijiHoiku').prop('checked')) {
+			conditions['IchijiHoiku'] = 1;
+			ninka = ninkagai = true;
 		}
-		if($('#ninkaYakan').prop('checked')) {
-			conditions['ninkaYakan'] = 1;
-			ninka = true;
+		if($('#Yakan').prop('checked')) {
+			conditions['Yakan'] = 1;
+			ninka = ninkagai = true;
 		}
-		if($('#ninkaKyujitu').prop('checked')) {
-			conditions['ninkaKyujitu'] = 1;
-			ninka = true;
+		if($('#Kyujitu').prop('checked')) {
+			conditions['Kyujitu'] = 1;
+			ninka = ninkagai = true;
 		}
-		if($('#ninkaVacancy').prop('checked')) {
-			conditions['ninkaVacancy'] = 1;
-			ninka = true;
+		if($('#Vacancy').prop('checked')) {
+			conditions['Vacancy'] = 1;
+			ninka = ninkagai = true;
 		}
-
-		// 認可外
-		if($('#ninkagaiOpenTime option:selected').val() !== "") {
-			conditions['ninkagaiOpenTime'] = $('#ninkagaiOpenTime option:selected').val();
+		if($('#24H').prop('checked')) {
+			conditions['24H'] = 1;
+			ninka = ninkagai = true;
+		}
+		// 先取りプロジェクト認定
+		if($('#Sakidori_auth').prop('checked')) {
+			conditions['Sakidori_auth'] = 1;
 			ninkagai = true;
 		}
-		if($('#ninkagaiCloseTime option:selected').val() !== "") {
-			conditions['ninkagaiCloseTime'] = $('#ninkagaiCloseTime option:selected').val();
-			ninkagai = true;
-		}
-		if($('#ninkagai24H').prop('checked')) {
-			conditions['ninkagai24H'] = 1;
-			ninkagai = true;
-		}
-		if($('#ninkagaiShomei').prop('checked')) {
-			conditions['ninkagaiShomei'] = 1;
+		// 保育ルーム認定
+		if($('#Hoikuroom_auth').prop('checked')) {
+			conditions['Hoikuroom_auth'] = 1;
 			ninkagai = true;
 		}
 
@@ -703,6 +699,12 @@ $('#compare-page').on('pageshow', function() {
 	content += compareDataDom("保育室広さ", playroom1, playroom2);
 	// プール
 	content += compareBooleanDataDom("プール", nursery1["Pool"], nursery2["Pool"], 'あり', 'なし');
+	if(nursery1['Type'] === '認可外' && nursery2['Type'] === '認可外') {
+		// 先取りプロジェクト認定
+		content += compareBooleanDataDom("先取りプロジェクト認定", nursery1["Sakidori_auth"], nursery2["Sakidori_auth"], 'あり', 'なし');
+		// 保育ルーム認定
+		content += compareBooleanDataDom("保育ルーム認定", nursery1["Hoikuroom_auth"], nursery2["Hoikuroom_auth"], 'あり', 'なし');
+	}
 	// 備考
 	content += compareDataDom("備考", nursery1["Remarks"], nursery2["Remarks"]);
 
