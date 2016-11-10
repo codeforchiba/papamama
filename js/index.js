@@ -531,29 +531,8 @@ $('#mainPage').on('pageshow', function() {
  */
 // 表示処理
 $('#favorite-list').on('pageshow', function() {
-	var favoriteList = filter.getFavoriteFeatures(nurseryFacilities);
-	var $items = $("#favorite-items");
-	$items.children().remove();
-	favoriteList.forEach(function(item, index){
-		var id = favoriteStore.getId(item);
-		var styleClass = "ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on";
-		if (index === 0) {
-			styleClass += " ui-first-child";
-		}
-		if (index === favoriteList.length - 1) {
-			styleClass += " ui-last-child";
-		}
-		var element = "";
-		element += "<div class='ui-checkbox'>";
-		element += "  <label for='" + id + "' class='" + styleClass + "'>" + item.properties['Name'] + "</label>";
-		element += "  <input type='checkbox' value='" + id + "' id='" + id + "' " + (compareNurseries.indexOf(id) >= 0 ? "checked='checked'" : "") + ">";
-		element += "</div>"
-
-		$items.append(element);
-	});
-	$items.trigger('create');
-
-	onChangeCheckbox();
+	// お気に入り一覧作成
+	createFavoriteList();
 });
 
 // チェックボックス選択時
@@ -563,7 +542,16 @@ var onChangeCheckbox = function() {
 	  return $(this).val();
 	}).get();
 
-	if (compareNurseries.length >= 2) {
+    if (compareNurseries.length == 1) {
+		favoriteCheckboxes.each(function(){
+			$(this).removeClass("ui-state-disabled").removeClass("ui-state-active");
+			$(this).find(":checkbox").prop("disabled", false);
+		});
+		$("#compare-btn").addClass("ui-state-disabled");
+		$("#compare-btn").prop("disabled", true);
+		$("#delete-btn").removeClass("ui-state-disabled");
+		$("#delete-btn").prop("disabled", false);
+    } else if (compareNurseries.length >= 2) {
 		favoriteCheckboxes.each(function(){
 			var $checkbox = $(this).find(":checkbox");
 			if (!$checkbox.is(":checked")) {
@@ -580,8 +568,8 @@ var onChangeCheckbox = function() {
 			$(this).removeClass("ui-state-disabled").removeClass("ui-state-active");
 			$(this).find(":checkbox").prop("disabled", false);
 		});
-		$("#compare-btn").addClass("ui-state-disabled");
-		$("#compare-btn").prop("disabled", true);
+		$("#compare-btn, #delete-btn").addClass("ui-state-disabled");
+		$("#compare-btn, #delete-btn").prop("disabled", true);
 	}
 };
 $("#favorite-list").on("change", "#favorite-items .ui-checkbox :checkbox", onChangeCheckbox);
@@ -727,3 +715,43 @@ $('#compare-page').on('pageshow', function() {
 
 	$("#nursery-compare-body").html(content);
 });
+
+// お気に入りから外す
+$('#delete-btn').on('tap', function() {
+	var favoriteList = filter.getFavoriteFeatures(nurseryFacilities);
+	// チェックされた施設をお気に入りからremove
+	for(var i=0; i<favoriteList.length ; i++) {
+		if (compareNurseries[i] != null ) {
+			favoriteStore.removeFavorite(filter.getFeatureById(compareNurseries[i]));
+		}
+	}
+	// お気に入り一覧再構築
+	createFavoriteList();
+});
+
+// お気に入り一覧作成
+function createFavoriteList() {
+	var favoriteList = filter.getFavoriteFeatures(nurseryFacilities);
+	var $items = $("#favorite-items");
+	$items.children().remove();
+	favoriteList.forEach(function(item, index){
+		var id = favoriteStore.getId(item);
+		var styleClass = "ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on";
+		if (index === 0) {
+			styleClass += " ui-first-child";
+		}
+		if (index === favoriteList.length - 1) {
+			styleClass += " ui-last-child";
+		}
+		var element = "";
+		element += "<div class='ui-checkbox'>";
+		element += "  <label for='" + id + "' class='" + styleClass + "'>" + item.properties['Name'] + "</label>";
+		element += "  <input type='checkbox' value='" + id + "' id='" + id + "' " + (compareNurseries.indexOf(id) >= 0 ? "checked='checked'" : "") + ">";
+		element += "</div>"
+
+		$items.append(element);
+	});
+	$items.trigger('create');
+
+	onChangeCheckbox();
+}
