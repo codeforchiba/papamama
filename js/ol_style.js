@@ -10,6 +10,7 @@ var featureStyleList = {
 };
 
 var favoriteColor = '#FF0';
+var phoneWidth = 640;
 
 /**
  * 保育施設共通のスタイル定義
@@ -41,8 +42,15 @@ var nurseryStyleFunction = function(feature, resolution) {
 
 	resolution = Math.floor(resolution * 1000);
 	var _type = "";
+	var text = "";
 	var label = feature.get('ラベル') ? feature.get('ラベル') : feature.get('Label')
-	var text = resolution < 10000 ? label : '';
+	// スマホの場合、マップ上で施設名が表示される縮尺を調整
+	var width = $(window).width();
+	if ( width <= phoneWidth ) {
+		text = resolution < 9000 ? label : '';
+	} else {
+		text = resolution < 10000 ? label : '';
+	}
 	var style = [];
 	style = [
 		new ol.style.Style({image: background}),
