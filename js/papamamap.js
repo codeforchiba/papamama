@@ -440,7 +440,7 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<tr>';
         content += '<th>監督基準</th>';
         content += '<td>';
-        content += '証明書発行済<a href="https://www.city.chiba.jp/kodomomirai/kodomomirai/unei/ninkagai.html" target="_blank">(詳細)</a>';
+        content += '証明書発行済<a href="http://www.city.nara.jp/" target="_blank">（詳細）</a>';
         content += '</td>';
         content += '</tr>';
     }
@@ -451,9 +451,9 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<th>欠員</th>';
         content += '<td>';
         if(vacancy === 'Y') {
-            content += '<a href="http://www.city.chiba.jp/kodomomirai/kodomomirai/unei/akizyoukyou.html" target="_blank">空きあり</a>';
+            content += '<a href="http://www.city.nara.jp/" target="_blank">空きあり</a>';
         }else if (vacancy === 'N'){
-            content += '<a href="http://www.city.chiba.jp/kodomomirai/kodomomirai/unei/akizyoukyou.html" target="_blank">空きなし</a>';
+            content += '<a href="http://www.city.nara.jp/" target="_blank">空きなし</a>';
         }
         var vacancyDate = feature.get('VacancyDate');
         if (vacancyDate != null) {
