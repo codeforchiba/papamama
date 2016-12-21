@@ -1,16 +1,17 @@
-# 千葉市版保育園マップについて
+# 奈良市市版保育園マップについて
 
-Code for Sapporo の開発したさっぽろ保育園マップを千葉市にも作ろう！ ということで開発しました。
+Code for Sapporo の開発したさっぽろ保育園マップを奈良市にも作ろう！ ということで開発しました。
 
-千葉市版は、さっぽろ保育園マップをベースに作られたオープンガバメント推進協議会版をベースに機能追加と、千葉市の制度に合わせております。
+奈良市版は、さっぽろ保育園マップをベースに作られたオープンガバメント推進協議会版からCode for Chiba が作成し機能拡張した千葉市版をベースにしています。
 
 さっぽろ保育園マップについては、こちら。
 
-- http://www.codeforsapporo.org/papamama/
+- http://papamama.codeforsapporo.org/
 
-オープンガバメント推進協議会については、こちらをどうぞ。
 
-- https://www.facebook.com/ogkyogikai/
+ちば保育園マップはこちら
+
+- http://papamama.code4chiba.org/
 
 ## 利用している地図について
 
@@ -20,10 +21,8 @@ Code for Sapporo の開発したさっぽろ保育園マップを千葉市にも
 
 ## 保育園マップで使われるデータについて
 
-千葉市で公開している保育所データ、および、国土数値情報ダウンロードサービスから入手できる福祉施設情報を元に独自のCSVデータを作成し利用しています。
+奈良市で公開している保育所データ、および、国土数値情報ダウンロードサービスから入手できる学校、鉄道駅および福祉施設情報を元に作成し利用しています。
 
-- http://www.city.chiba.jp/kodomomirai/kodomomirai/unei/nyuusyomatiitiran.html
-- https://www.city.chiba.jp/kodomomirai/kodomomirai/unei/akizyoukyou.html
 - http://nlftp.mlit.go.jp/ksj/index.html
 
 ## 開発環境構築 & 開発時の起動方法
@@ -56,7 +55,6 @@ Node.js の実行環境をインストールした後、gulp をインストー�
 
 国土数値情報ダウンロードサービスから、該当する市町村の以下のデータを取得してください。
 
-- 行政区域
 - 小学校区
 - 中学校区
 - 学校
@@ -72,3 +70,4 @@ Node.js の実行環境をインストールした後、gulp をインストー�
 ## ライセンスについて
 
 このソフトウェアは、MITライセンスでのもとで公開されています。[こちら](LICENSE.txt) をご覧ください。
+

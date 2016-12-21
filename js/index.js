@@ -1,8 +1,8 @@
 // 地図表示時の中心座標
-var init_center_coords = [140.1112972, 35.6129448];
+var init_center_coords = [135.8200, 34.6800];
 
 // Bing APIのキー
-var bing_api_key = 'AmZf7-yYIwSXN8m0ABFEMGsgoGj1ahvNIoDsVpuOeKs5DYCzEdtppzK2QCx68Qc5';
+var bing_api_key = 'AspGLWLrdwky_u--qQ7nNRFJUqoLNLjpqBu5QAGhgBm7IRONe0d6QJSvqg9FksI2';
 
 // map
 var map;
