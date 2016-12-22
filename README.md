@@ -1,4 +1,4 @@
-# 奈良市市版保育園マップについて
+# 奈良市版保育園マップについて
 
 Code for Sapporo の開発したさっぽろ保育園マップを奈良市にも作ろう！ ということで開発しました。
 
@@ -18,6 +18,10 @@ Code for Sapporo の開発したさっぽろ保育園マップを奈良市にも
 地理院地図で提供している地理院タイルの地図情報を利用しています。
 
 - http://portal.cyberjapan.jp/help/development/ichiran.html
+
+OpenStreetMap JAPAN の地図タイルも利用しています。
+
+- https://openstreetmap.jp/
 
 ## 保育園マップで使われるデータについて
 
