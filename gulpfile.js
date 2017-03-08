@@ -210,7 +210,21 @@ gulp.task("data-nursery", (cb) => {
         return json;
       }))
       .on('data', function(data) {
-        dataList.push(data)
+          switch(data.Type){
+	  case '認定こども園':
+              data.Type='認可保育所'
+	      break;
+	  case '地域型保育事業':
+              data.Type='認可保育所'
+	      break;
+	  case '認可外保育施設':
+              data.Type='認可外'
+	      break;
+	  case '病児保育施設':
+              data.Type='認可外'
+	      break;
+	  }
+	dataList.push(data)
       }).on('end', function(){
         fs.writeFileSync( 'data/nurseryFacilities.geojson', JSON.stringify(GeoJSON.parse(dataList.slice(1), {Point: ['Y', 'X']})) );
         cb();
