@@ -30,8 +30,19 @@ var favoriteStore = new FavoriteStore();
 
 // マップサーバ一覧
 var mapServerList = {
-	'bing-road': {
-		label: "標準(Bing)",
+	'osmjp': {
+		label: "OpenStreetMap",
+		source_type: "osm",
+		source: new ol.source.OSM({
+		        url: "http://tile.openstreetmap.jp/{z}/{x}/{y}.png",
+  		        crossOrigin: null,
+   		        attributions: [
+				ol.source.OSM.ATTRIBUTION,
+			]
+		})
+	},
+        'bing-road': {
+		label: "Bing",
 		source_type: "bing",
 		source: new ol.source.BingMaps({
 			culture: 'ja-jp',
@@ -63,7 +74,7 @@ var mapServerList = {
 			]
 		})
 	},
-	'bing-aerial': {
+    'bing-aerial': {
 		label: "写真",
 		source_type: "bing",
 		source: new ol.source.BingMaps({
@@ -103,7 +114,8 @@ $('#mainPage').on('pageshow', function() {
 
 	// 地図レイヤー定義
 	papamamap.viewCenter = init_center_coords;
-	papamamap.generate(mapServerList['bing-road']);
+//	papamamap.generate(mapServerList['bing-road']);
+	papamamap.generate(mapServerList['osmjp']);
 	map = papamamap.map;
 
 	// 保育施設の読み込みとレイヤーの追加
