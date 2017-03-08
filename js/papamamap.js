@@ -448,8 +448,13 @@ Papamamap.prototype.getPopupContent = function(feature)
     var vacancy = feature.get('Vacancy');
     if(type == "認可保育所" && vacancy != null) {
         content += '<tr>';
-        content += '<th>欠員</th>';
+//        content += '<th>欠員</th>';
+        content += '<th>空き情報</th>';
         content += '<td>';
+        if(vacancy != null ) {
+	    content += '<a href="' + vacancy + '" target="_blank">詳細はこちら</a>';
+	}
+/*
         if(vacancy === 'Y') {
             content += '<a href="http://www.city.nara.jp/" target="_blank">空きあり</a>';
         }else if (vacancy === 'N'){
@@ -459,6 +464,7 @@ Papamamap.prototype.getPopupContent = function(feature)
         if (vacancyDate != null) {
             content += " (" + dateValue(vacancyDate) + ")";
         }
+*/
         content += '</td>';
         content += '</tr>';
     }
