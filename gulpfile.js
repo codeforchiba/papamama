@@ -211,8 +211,11 @@ gulp.task("data-nursery", (cb) => {
       }))
       .on('data', function(data) {
           switch(data.Type){
-	  case '認定こども園':
+	  case '認定こども園(保育)':
               data.Type='認可保育所'
+	      break;
+	  case '認定こども園':
+              data.Type='幼稚園'
 	      break;
 	  case '地域型保育事業':
               data.Type='認可保育所'
