@@ -101,6 +101,8 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         Features = Features.filter(filterfunc);
     }
     // 空き状況
+    // Cut for Nara
+/*
     if(conditions['Vacancy']) {
         filterfunc = function (item,idx) {
             var vacancy = item.properties['Vacancy'] ? item.properties['Vacancy'] : item.properties['Vacancy'];
@@ -110,6 +112,7 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         };
         Features = Features.filter(filterfunc);
     }
+*/
     // console.log("[after]ninkaFeatures length:", ninkaFeatures.length);
 
     // 24時間

@@ -629,6 +629,14 @@ $('#compare-page').on('pageshow', function() {
 	content += compareBooleanDataDom("夜間保育", nursery1["Night"], nursery2["Night"], 'あり', 'なし');
 	// 24時間
 	content += compareBooleanDataDom("24時間", nursery1["H24"], nursery2["H24"], '対応', '未対応');
+    　　// add for Nara
+    　　// 延長保育
+        content += compareBooleanDataDom("延長保育", nursery1["Extra"], nursery2["Extra"], '対応', '未対応');
+    　　// 病児保育
+        content += compareBooleanDataDom("病児保育", nursery1["Sick"], nursery2["Sick"], '対応', '未対応');
+    　　// 病後児保育
+        content += compareBooleanDataDom("病後児保育", nursery1["AfterSick"], nursery2["AfterSick"], '対応', '未対応');
+    
   // 監督基準
 	var proof1 = nursery1["Type"] === "認可外" ? nursery1["Proof"] : null;
 	var proof2 = nursery2["Type"] === "認可外" ? nursery2["Proof"] : null;

@@ -388,12 +388,44 @@ Papamamap.prototype.getPopupContent = function(feature)
     var close = feature.get('終園時間') ? feature.get('終園時間') : feature.get('Close');
     if (open !=  null || close != null ) {
         content += '<tr>';
-        content += '<th>時間</th>';
+        content += '<th>開終園時間(平日)</th>';
         content += '<td>';
         content += (open ? open : "") + '〜' + (close ? close : "");
         content += '</td>';
         content += '</tr>';
     }
+    var opensat  = feature.get('OpenSAT');
+    var closesat = feature.get('CloseSAT');
+    if (opensat !=  null || closesat != null ) {
+        content += '<tr>';
+        content += '<th>開終園時間(土曜)</th>';
+        content += '<td>';
+        content += (opensat ? opensat : "") + '〜' + (closesat ? closesat : "");
+        content += '</td>';
+        content += '</tr>';
+    }
+    var openstd  = feature.get('OpenSTD');
+    var closestd = feature.get('CloseSTD');
+    if (opensat !=  null || closesat != null ) {
+        content += '<tr>';
+        content += '<th>標準保育時間</th>';
+        content += '<td>';
+        content += (openstd ? openstd : "") + '〜' + (closestd ? closestd : "");
+        content += '</td>';
+        content += '</tr>';
+    }
+    var openstd  = feature.get('OpenSHRT');
+    var closestd = feature.get('CloseSHRT');
+    if (opensat !=  null || closesat != null ) {
+        content += '<tr>';
+        content += '<th>短時間保育</th>';
+        content += '<td>';
+        content += (openstd ? openstd : "") + '〜' + (closestd ? closestd : "");
+        content += '</td>';
+        content += '</tr>';
+    }
+
+
     var memo = feature.get('備考') ? feature.get('備考') : feature.get('Memo');
     if (memo != null) {
         content += '<tr>';
@@ -406,6 +438,13 @@ Papamamap.prototype.getPopupContent = function(feature)
     var holiday = feature.get('休日') ? feature.get('休日') : feature.get('Holiday');
     var night   = feature.get('夜間') ? feature.get('夜間') : feature.get('Night');
     var h24     = feature.get('H24') ? feature.get('H24') : feature.get('H24');
+    // Add for Nara
+    var extra   = feature.get('Extra');
+    var sick    = feature.get('Sick');
+    var asick   = feature.get('AfterSick');
+    var tempyo  = feature.get('TempByY');
+    var type  = feature.get('Type');
+    
     if (temp != null) {
         content += '<tr>';
         content += '<th>一時保育</th>';
@@ -428,6 +467,34 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<tr>';
         content += '<th>24時間</th>';
         content += '<td>' + booleanValue(h24, 'あり', 'なし') + '</td>';
+        content += '</tr>';
+    }
+
+    // Add for Nara
+    // content += '<tr><th>DEBUG</th><td>' + type + tempyo + '<td><tr>';
+    if (extra != null) {
+        content += '<tr>';
+        content += '<th>延長保育</th>';
+        content += '<td>' + booleanValue(extra, 'あり', 'なし') + '</td>';
+        content += '</tr>';
+    }
+    if (sick != null) {
+        content += '<tr>';
+        content += '<th>病児保育</th>';
+        content += '<td>' + booleanValue(sick, 'あり', 'なし') + '</td>';
+        content += '</tr>';
+    }
+    if (h24 != null) {
+        content += '<tr>';
+        content += '<th>病後児保育/th>';
+        content += '<td>' + booleanValue(asick, 'あり', 'なし') + '</td>';
+        content += '</tr>';
+    }
+    // 幼稚園の預かり保育
+    if ((type === '幼稚園' ) && (tempyo != null)) {
+        content += '<tr>';
+        content += '<th>預かり保育</th>';
+        content += '<td>' + booleanValue(tempyo, 'あり', 'なし') + '</td>';
         content += '</tr>';
     }
 
