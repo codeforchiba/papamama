@@ -406,7 +406,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     }
     var openstd  = feature.get('OpenSTD');
     var closestd = feature.get('CloseSTD');
-    if (opensat !=  null || closesat != null ) {
+    if (openstd !=  null || closestd != null ) {
         content += '<tr>';
         content += '<th>標準保育時間</th>';
         content += '<td>';
@@ -414,9 +414,9 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '</td>';
         content += '</tr>';
     }
-    var openstd  = feature.get('OpenSHRT');
-    var closestd = feature.get('CloseSHRT');
-    if (opensat !=  null || closesat != null ) {
+    var openshrt  = feature.get('OpenSHRT');
+    var closeshrt = feature.get('CloseSHRT');
+    if (openshrt !=  null || closeshrt != null ) {
         content += '<tr>';
         content += '<th>短時間保育</th>';
         content += '<td>';
@@ -516,7 +516,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     if(type == "認可保育所" && vacancy != null) {
         content += '<tr>';
 //        content += '<th>欠員</th>';
-        content += '<th>空き情報</th>';
+        content += '<th>受入情報</th>';
         content += '<td>';
         if(vacancy != null ) {
 	    content += '<a href="' + vacancy + '" target="_blank">詳細はこちら</a>';
