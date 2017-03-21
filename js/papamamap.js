@@ -516,7 +516,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     if(type == "認可保育所" && vacancy != null) {
         content += '<tr>';
 //        content += '<th>欠員</th>';
-        content += '<th>受入情報</th>';
+        content += '<th>受入状況</th>';
         content += '<td>';
         if(vacancy != null ) {
 	    content += '<a href="' + vacancy + '" target="_blank">詳細はこちら</a>';
