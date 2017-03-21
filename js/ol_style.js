@@ -22,6 +22,17 @@ var nurseryStyleFunction = function(feature, resolution) {
 	var featureStyle = _.clone(featureStyleList[facilityTypeName]);
 
 	var radius = 15;
+        //  mod for こども園 by code4nara
+        var kodomo = feature.get('Kodomo');
+        if(( kodomo === 'Y' )&&( facilityTypeName === '幼稚園' )){
+	    featureAnckor = [0.5 , 0.5];
+//	    featureAnckor = [0.0 , 0.5];
+	    featureOffsetY =  23.0;
+	}else{
+	    featureAnckor = [0.5 , 0.5];
+	    featureOffsetY = -21.0;
+	};
+
 	var fillColor = favoriteStore.isFavorite(feature) ? favoriteColor : featureStyle.color;
 	var strokeColor = 'white';
 	var background = new ol.style.Circle({
@@ -32,7 +43,7 @@ var nurseryStyleFunction = function(feature, resolution) {
 		stroke: new ol.style.Stroke({color: strokeColor, width: 3})
 	});
 	var image = new ol.style.Icon({
-		anchor: [0.5, 0.5],
+		anchor: featureAnckor,
 		anchorXUnits: 'fraction',
 		anchorYUnits: 'fraction',
 		src: featureStyle.img,
@@ -41,8 +52,12 @@ var nurseryStyleFunction = function(feature, resolution) {
 
 	resolution = Math.floor(resolution * 1000);
 	var _type = "";
-	var label = feature.get('ラベル') ? feature.get('ラベル') : feature.get('Label')
-	var text = resolution < 10000 ? label : '';
+    //  Mod for Nara
+    //	var label = feature.get('ラベル') ? feature.get('ラベル') : feature.get('Label')
+    //	var text = resolution < 10000 ? label : '';
+        var label = feature.get('Name');
+	var text = resolution < 3000 ? label : '';
+
 	var style = [];
 	style = [
 		new ol.style.Style({image: background}),
@@ -53,7 +68,7 @@ var nurseryStyleFunction = function(feature, resolution) {
 		style.push(
 			new ol.style.Style({
 				text: new ol.style.Text({
-					offsetY: -20.0,
+					offsetY: featureOffsetY,
 					text: text,
 					font: '14px sans-serif',
 					fill: new ol.style.Fill({
