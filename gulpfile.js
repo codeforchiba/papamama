@@ -89,7 +89,7 @@ gulp.task("data-school", (cb) => {
     } else {
       var features = json.features.filter((feature) => {
         var cityCode = feature.properties.P29_001;
-        feature.properties.label = feature.properties.P29_005.replace(/学校$/, '');
+        feature.properties.Label = feature.properties.P29_005.replace(/学校$/, '');
 //        return cityCode && cityCode.indexOf('121') === 0;
         return cityCode && cityCode.indexOf('29201') === 0;
       });
@@ -213,9 +213,11 @@ gulp.task("data-nursery", (cb) => {
           switch(data.Type){
 	  case '認定こども園(保育)':
               data.Type='認可保育所'
+              data.Kodomo='Y'
 	      break;
 	  case '認定こども園':
               data.Type='幼稚園'
+              data.Kodomo='Y'
 	      break;
 	  case '地域型保育事業':
               data.Type='認可保育所'
