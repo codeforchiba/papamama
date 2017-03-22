@@ -376,6 +376,7 @@ $('#mainPage').on('pageshow', function() {
 		if($('#24H').prop('checked')) {
 			conditions['24H'] = 1;
 		}
+/*
 		// 先取りプロジェクト認定
 		if($('#Sakidori_auth').prop('checked')) {
 			conditions['Sakidori_auth'] = 1;
@@ -384,15 +385,33 @@ $('#mainPage').on('pageshow', function() {
 		if($('#Hoikuroom_auth').prop('checked')) {
 			conditions['Hoikuroom_auth'] = 1;
 		}
-		// こども園
-		if($('#Kodomo').prop('checked')) {
-			conditions['Kodomo'] = 1;
-		}
 		// 事業所内保育所
 		if($('#Shanai').prop('checked')) {
 			conditions['Shanai'] = 1;
 		}
+*/
+	        // こども園
+		if($('#Kodomo').prop('checked')) {
+			conditions['Kodomo'] = 1;
+		}
+	        // 延長保育
+		if($('#Extra').prop('checked')) {
+			conditions['Extra'] = 1;
+		}
+	        // 病児保育
+		if($('#Sick').prop('checked')) {
+			conditions['Sick'] = 1;
+		}
+	    	// 病後児保育
+		if($('#AfterSick').prop('checked')) {
+			conditions['AfterSick'] = 1;
+		}
+	    	// 預かり保育
+		if($('#AzukariHoiku').prop('checked')) {
+			conditions['AzukariHoiku'] = 1;
+		}
 
+	    
 		// フィルター適用時
 		if(Object.keys(conditions).length > 0) {
 			newGeoJson = filter.getFilteredFeaturesGeoJson(conditions, nurseryFacilities);
@@ -621,7 +640,8 @@ $('#compare-page').on('pageshow', function() {
 	content += compareDataDom("時間", open1 + "〜" + close1, open2 + "〜" + close2);
 	// 備考
 	content += compareDataDom("備考", nursery1["Memo"], nursery2["Memo"]);
-	// 一時保育
+
+        // 一時保育
 	content += compareBooleanDataDom("一時保育", nursery1["Temp"], nursery2["Temp"], 'あり', 'なし');
 	// 休日保育
 	content += compareBooleanDataDom("休日保育", nursery1["Holiday"], nursery2["Holiday"], 'あり', 'なし');
@@ -707,13 +727,15 @@ $('#compare-page').on('pageshow', function() {
 	content += compareDataDom("保育室広さ", playroom1, playroom2);
 	// プール
 	content += compareBooleanDataDom("プール", nursery1["Pool"], nursery2["Pool"], 'あり', 'なし');
+/*
 	if(nursery1['Type'] === '認可外' && nursery2['Type'] === '認可外') {
 		// 先取りプロジェクト認定
 		content += compareBooleanDataDom("先取りプロジェクト認定", nursery1["Sakidori_auth"], nursery2["Sakidori_auth"], 'あり', 'なし');
 		// 保育ルーム認定
 		content += compareBooleanDataDom("保育ルーム認定", nursery1["Hoikuroom_auth"], nursery2["Hoikuroom_auth"], 'あり', 'なし');
 	}
-	// 備考
+*/
+    // 備考
 	content += compareDataDom("備考", nursery1["Remarks"], nursery2["Remarks"]);
 
 	$("#nursery-compare-body").html(content);

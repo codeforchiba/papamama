@@ -105,9 +105,7 @@
                             <option value="19:00">19:00以降</option>
                             <option value="20:00">20:00以降</option>
                             <option value="22:00">22:00以降</option>
-                            <option value="23:00">23:00以降</option>
-                            <option value="24:00">00:00以降</option>
-                            <option value="27:00">03:00以降</option>
+                            <option value="24:00">24:00以降</option>
                         </select>
                         <label for="24H">24時間</label>
                         <input type="checkbox" id="24H" class="filtercb">
@@ -115,11 +113,27 @@
                     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                         <label for="IchijiHoiku">一時保育</label>
                         <input type="checkbox" id="IchijiHoiku" class="filtercb">
-                        <label for="Yakan">夜間</label>
+                        <label for="Yakan">夜間保育</label>
                         <input type="checkbox" id="Yakan" class="filtercb">
-                        <label for="Kyujitu">休日</label>
+                        <label for="Kyujitu">休日保育</label>
                         <input type="checkbox" id="Kyujitu" class="filtercb">
                     </fieldset>
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <label for="Extra">延長保育</label>
+                        <input type="checkbox" id="Extra" class="filtercb">
+                        <label for="Sick">病児保育</label>
+                        <input type="checkbox" id="Sick" class="filtercb">
+                        <label for="AfterSick">病後児保育</label>
+                        <input type="checkbox" id="AfterSick" class="filtercb">
+                    </fieldset>
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <label for="Kodomo">こども園</label>
+                        <input type="checkbox" id="Kodomo" class="filtercb">
+                        <label for="AzukariHoiku">預かり保育（幼稚園）</label>
+                        <input type="checkbox" id="AzukariHoiku" class="filtercb">
+                    </fieldset>
+
+<!--  // cut by code for nara
                     <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                         <label for="Sakidori_auth">先取りプロジェクト認定</label>
                         <input type="checkbox" id="Sakidori_auth" class="filtercb">
@@ -136,6 +150,7 @@
                         <label for="Vacancy">空きあり（試用版。最新の空き状況ではありません）</label>
                         <input type="checkbox" id="Vacancy" class="filtercb">
                     </fieldset>
+!-->
                     <div class="ui-grid-a">
                       <div class="ui-block-a">
                           <a href="#" data-rel="back" id="filterApply" class="ui-btn ui-corner-all ui-btn-b ui-btn-icon-left ui-icon-check">条件適用</a>

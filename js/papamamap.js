@@ -420,7 +420,7 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<tr>';
         content += '<th>短時間保育</th>';
         content += '<td>';
-        content += (openstd ? openstd : "") + '〜' + (closestd ? closestd : "");
+        content += (openshrt ? openshrt : "") + '〜' + (closeshrt ? closeshrt : "");
         content += '</td>';
         content += '</tr>';
     }
@@ -484,9 +484,9 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + booleanValue(sick, 'あり', 'なし') + '</td>';
         content += '</tr>';
     }
-    if (h24 != null) {
+    if (asick != null) {
         content += '<tr>';
-        content += '<th>病後児保育/th>';
+        content += '<th>病後児保育</th>';
         content += '<td>' + booleanValue(asick, 'あり', 'なし') + '</td>';
         content += '</tr>';
     }
