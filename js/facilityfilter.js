@@ -125,41 +125,53 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         };
         Features = Features.filter(filterfunc);
     }
-    // 先取りプロジェクト認定あり
-    if(conditions['Sakidori_auth']) {
+
+    // 延長保育
+    if(conditions['Extra']) {
         filterfunc = function (item,idx) {
-            var proof = item.properties['Sakidori_auth'];
-            if(proof === 'Y') {
+            var extra = item.properties['Extra'];
+            if(extra === 'Y') {
                 return true;
             }
         };
         Features = Features.filter(filterfunc);
     }
-    // 保育ルーム認定あり
-    if(conditions['Hoikuroom_auth']) {
+    // 病児保育
+    if(conditions['Sick']) {
         filterfunc = function (item,idx) {
-            var proof = item.properties['Hoikuroom_auth'];
-            if(proof === 'Y') {
+            var sick = item.properties['Sick'];
+            if(sick === 'Y') {
                 return true;
             }
         };
         Features = Features.filter(filterfunc);
     }
-    // 事業所内保育所
-    if(conditions['Shanai']) {
+    // 病後児保育
+    if(conditions['AfterSick']) {
         filterfunc = function (item,idx) {
-            var shanai = item.properties['Shanai'];
-            if(shanai === 'Y') {
+            var asick = item.properties['AfterSick'];
+            if(asick === 'Y') {
                 return true;
             }
         };
         Features = Features.filter(filterfunc);
     }
+
     // こども園
     if(conditions['Kodomo']) {
         filterfunc = function (item,idx) {
             var kodomo = item.properties['Kodomo'];
             if(kodomo === 'Y') {
+                return true;
+            }
+        };
+        Features = Features.filter(filterfunc);
+    }
+    // 預かり保育（幼稚園）
+    if(conditions['AzukariHoiku']) {
+        filterfunc = function (item,idx) {
+            var tempyo = item.properties['TempByY'];
+            if( tempyo === 'Y') {
                 return true;
             }
         };
