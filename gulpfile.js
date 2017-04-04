@@ -197,7 +197,6 @@ gulp.task("data-nursery", (cb) => {
     .setEncoding('utf8')
     .pipe(csv.parse())
     .on('data', function(headers){
-
       var dataList = [];
       fs.createReadStream(fileName)
       .pipe(iconv.decodeStream('shift_jis'))
@@ -210,26 +209,7 @@ gulp.task("data-nursery", (cb) => {
         return json;
       }))
       .on('data', function(data) {
-          switch(data.Type){
-	  case '認定こども園(保育)':
-              data.Type='認可保育所'
-              data.Kodomo='Y'
-	      break;
-	  case '認定こども園':
-              data.Type='幼稚園'
-              data.Kodomo='Y'
-	      break;
-	  case '地域型保育事業':
-              data.Type='認可保育所'
-	      break;
-	  case '認可外保育施設':
-              data.Type='認可外'
-	      break;
-	  case '病児保育施設':
-              data.Type='認可外'
-	      break;
-	  }
-	dataList.push(data)
+ 	  dataList.push(data)
       }).on('end', function(){
         fs.writeFileSync( 'data/nurseryFacilities.geojson', JSON.stringify(GeoJSON.parse(dataList.slice(1), {Point: ['Y', 'X']})) );
         cb();
