@@ -4,7 +4,7 @@
 #
 ####
 # Input FileName, MS-CP932 (shift-jis)
-ORG_FILE='./data_org/hoiku.csv'
+ORG_FILE='./data_org/hoikusyoitiran.csv'
 # Temp FileName, MS-CP932 (UTF-8)
 ORG_UTF8='./data_org/hoiku.csv.utf8'
 
