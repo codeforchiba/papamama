@@ -190,7 +190,7 @@ gulp.task("data-nursery", (cb) => {
 
       var dataList = [];
       fs.createReadStream(fileName)
-      .pipe(iconv.decodeStream('shift_jis'))
+      .pipe(iconv.decodeStream('utf-8'))
       .pipe(csv.parse())
       .pipe(csv.transform(function(record){
         var json = {};
