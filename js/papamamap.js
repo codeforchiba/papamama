@@ -511,8 +511,8 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + fax + '</td>';
         content += '</tr>';
     }
-    var add1 = feature.get('住所１') ? feature.get('住所１') : feature.get('Add1');
-    var add2 = feature.get('住所２') ? feature.get('住所２') : feature.get('Add2');
+    var add1 = feature.get('住所１') ? feature.get('住所１') : feature.get('Address');
+    var add2 = feature.get('住所２') ? feature.get('住所２') : feature.get('Address2');
     if (add1 != null || add2 != null) {
         content += '<tr>';
         content += '<th>住所</th>';
