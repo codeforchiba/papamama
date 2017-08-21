@@ -133,9 +133,9 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         Features = Features.filter(filterfunc);
     }
     // 事業所内保育所
-    if(conditions['Shanai']) {
+    if(conditions['Shonai']) {
         filterfunc = function (item,idx) {
-            var shanai = item.properties['Shanai'];
+            var shanai = item.properties['Shonai'];
             if(shanai === 'Y') {
                 return true;
             }
