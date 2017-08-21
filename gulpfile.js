@@ -151,8 +151,8 @@ gulp.task("data-nursery-bk", (cb) => {
       json.features.forEach((feature) => {
         feature.properties.Name = feature.properties.P14_007;
         feature.properties.Label = feature.properties.P14_007;
-        feature.properties.Add1 = feature.properties.P14_002;
-        feature.properties.Add2 = feature.properties.P14_003;
+        feature.properties.Address = feature.properties.P14_002;
+        feature.properties.Address2 = feature.properties.P14_003;
         var code = feature.properties.P14_006;
         switch (code) {
           case '801':

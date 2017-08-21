@@ -684,8 +684,8 @@ $('#compare-page').on('pageshow', function() {
 	// FAX
 	content += compareDataDom("FAX", nursery1["FAX"], nursery2["FAX"]);
 	// 住所
-	var adr1 = (nursery1["Add1"] || "") + (nursery1["Add2"] || "" );
-	var adr2 = (nursery2["Add1"] || "") + (nursery2["Add2"] || "" );
+	var adr1 = (nursery1["Address"] || "") + (nursery1["Address2"] || "" );
+	var adr2 = (nursery2["Address"] || "") + (nursery2["Address2"] || "" );
 	content += compareDataDom("住所", adr1, adr2);
 	// 設置者
 	content += compareDataDom("設置者", nursery1["Owner"], nursery2["Owner"]);
