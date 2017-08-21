@@ -156,19 +156,19 @@ gulp.task("data-nursery-bk", (cb) => {
         var code = feature.properties.P14_006;
         switch (code) {
           case '801':
-          feature.properties.Type = '認可保育所'
+          feature.properties.Type = '認可保育施設'
           break;
           case '802':
-          feature.properties.Type = '認可保育所'
+          feature.properties.Type = '認可保育施設'
           break;
           case '803':
-          feature.properties.Type = '認可外'
+          feature.properties.Type = '認可外保育施設'
           break;
           case '804':
           feature.properties.Type = '幼稚園'
           break;
           case '805':
-          feature.properties.Type = '認可保育所'
+          feature.properties.Type = '認可保育施設'
           break;
         }
       });

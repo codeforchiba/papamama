@@ -248,12 +248,12 @@ $('#mainPage').on('pageshow', function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 認可保育所チェックボックスのイベント設定
+	// 認可保育施設チェックボックスのイベント設定
 	$('#cbNinka').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 認可外保育所チェックボックスのイベント設定
+	// 認可外保育施設チェックボックスのイベント設定
 	$('#cbNinkagai').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
@@ -607,7 +607,7 @@ $('#compare-page').on('pageshow', function() {
 	// 種別 + 先取りプロジェクト認定 + 保育ルーム認定
 	var typeValue = function(nursery) {
 		var type = nursery["Type"];
-		if (type === '認可外'){
+		if (type === '認可外保育施設'){
 			var sakidori_auth = nursery['Sakidori_auth'];
 			var hoikuroom_auth = nursery['Hoikuroom_auth'];
 			if (sakidori_auth === 'Y') {
@@ -624,13 +624,13 @@ $('#compare-page').on('pageshow', function() {
 
 	// 欠員
 	var vacancy1 = null, vacancy2 = null;
-	if (nursery1["Type"] === "認可保育所") {
+	if (nursery1["Type"] === "認可保育施設") {
 		vacancy1 = booleanValue(nursery1["Vacancy"], '空きあり', '空きなし');
 		if (nursery1["VacancyDate"] != null) {
 				vacancy1 += "<br> (" + dateValue(nursery1["VacancyDate"]) + ")";
 		}
 	}
-	if (nursery2["Type"] === "認可保育所") {
+	if (nursery2["Type"] === "認可保育施設") {
 		vacancy2 = booleanValue(nursery2["Vacancy"], '空きあり', '空きなし');
 		if (nursery2["VacancyDate"] != null) {
 				vacancy2 += "<br> (" + dateValue(nursery2["VacancyDate"]) + ")";
@@ -663,8 +663,8 @@ $('#compare-page').on('pageshow', function() {
 	// 24時間
 	content += compareBooleanDataDom("24時間", nursery1["H24"], nursery2["H24"], '対応', '未対応');
   // 監督基準
-	var proof1 = nursery1["Type"] === "認可外" ? nursery1["Proof"] : null;
-	var proof2 = nursery2["Type"] === "認可外" ? nursery2["Proof"] : null;
+	var proof1 = nursery1["Type"] === "認可外保育施設" ? nursery1["Proof"] : null;
+	var proof2 = nursery2["Type"] === "認可外保育施設" ? nursery2["Proof"] : null;
 	// 千葉市版は証明書発行表示必要ないので、proof1,2にnullを設定
 	proof1 = null;
 	proof2 = null;

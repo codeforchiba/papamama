@@ -179,14 +179,14 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
             projection: 'EPSG:3857',
             object: {
               type: facilitiesData.type,
-              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可外'})
+              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可外保育施設'})
             }
         }),
         name: 'layerNinkagai',
         style: nurseryStyleFunction
     });
     this.map.addLayer(layerNinkagai);
-    this.featureOverlays["認可外"] = layerNinkagai;
+    this.featureOverlays["認可外保育施設"] = layerNinkagai;
 
     // 認可
     var layerNinka = new ol.layer.Vector({
@@ -194,14 +194,14 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
             projection: 'EPSG:3857',
             object: {
               type: facilitiesData.type,
-              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可保育所'})
+              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可保育施設'})
             }
         }),
         name: 'layerNinka',
         style: nurseryStyleFunction
     });
     this.map.addLayer(layerNinka);
-    this.featureOverlays["認可保育所"] = layerNinka;
+    this.featureOverlays["認可保育施設"] = layerNinka;
 };
 
 /**
@@ -335,7 +335,7 @@ Papamamap.prototype.getPopupTitle = function(feature)
     var type = feature.get('種別') ? feature.get('種別') : feature.get('Type');
     title  = '[' + type + '] ';
     // 先取りプロジェクト or 保育ルーム
-    if (type === '認可外'){
+    if (type === '認可外保育施設'){
         var sakidori_auth = feature.get('Sakidori_auth');
         var hoikuroom_auth = feature.get('Hoikuroom_auth');
         if (sakidori_auth === 'Y') {
@@ -386,7 +386,7 @@ Papamamap.prototype.getPopupContent = function(feature)
 
     var type = feature.get('種別') ? feature.get('種別') : feature.get('Type');
     var vacancy = feature.get('Vacancy');
-    if(type == "認可保育所" && vacancy != null) {
+    if(type == "認可保育施設" && vacancy != null) {
         content += '<tr>';
         content += '<th>欠員</th>';
         content += '<td>';
@@ -473,7 +473,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     // 千葉市版は証明書発行表示必要ないので、proofにnullを設定
     proof = null;
 
-    if(type == "認可外" && proof === 'Y') {
+    if(type == "認可外保育施設" && proof === 'Y') {
         content += '<tr>';
         content += '<th>監督基準</th>';
         content += '<td>';
