@@ -380,8 +380,8 @@ $('#mainPage').on('pageshow', function() {
 			conditions['Kodomo'] = 1;
 		}
 		// 事業所内保育所
-		if($('#Shanai').prop('checked')) {
-			conditions['Shanai'] = 1;
+		if($('#Shonai').prop('checked')) {
+			conditions['Shonai'] = 1;
 		}
 
 		// フィルター適用時
@@ -639,9 +639,9 @@ $('#compare-page').on('pageshow', function() {
 	content += compareDataDom("欠員", vacancy1, vacancy2, '空きあり', '空きなし');
 	// 施設種別
 	var kodomo1  = nursery1["Kodomo"] === 'Y' ? '認定こども園' : "";
-	var shanai1 = nursery1["Shanai"] === 'Y' ? '事業所内保育所' : "";
+	var shanai1 = nursery1["Shonai"] === 'Y' ? '事業所内保育所' : "";
 	var kodomo2  = nursery2["Kodomo"] === 'Y' ? '認定こども園' : "";
-	var shanai2 = nursery2["Shanai"] === 'Y' ? '事業所内保育所' : "";
+	var shanai2 = nursery2["Shonai"] === 'Y' ? '事業所内保育所' : "";
 	content += compareDataDom("施設種別", kodomo1+shanai1 || null, kodomo2+shanai2 || null, "nursery-type");
 
 	// 時間

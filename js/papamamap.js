@@ -404,7 +404,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     }
 
     var kodomo = feature.get('Kodomo');
-    var shanai = feature.get('Shanai');
+    var shanai = feature.get('Shonai');
     if (kodomo === 'Y' || shanai === 'Y') {
         content += '<tr>';
         content += '<th>施設種別</th>';
