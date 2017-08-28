@@ -568,13 +568,6 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + cost + '</td>';
         content += '</tr>';
     }
-    var competition = feature.get('Competition');
-    if (competition != null) {
-        content += '<tr>';
-        content += '<th>申込倍率</th>';
-        content += '<td>' + competition + '倍 (2016年4月入園時)</td>';
-        content += '</tr>';
-    }
     var openingDate = feature.get('OpeningDate');
     if (openingDate != null) {
         content += '<tr>';
