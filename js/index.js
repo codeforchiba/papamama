@@ -706,7 +706,7 @@ $('#compare-page').on('pageshow', function() {
 	var competition2 = nursery2["Competition"] ? nursery2["Competition"] + '倍<br>(2016年4月入園時)' : null;
 	content += compareDataDom("申込倍率", competition1, competition2);
 	// 建築年月日
-	content += compareDataDom("建築年月日", dateValue(nursery1["Openingdate"]), dateValue(nursery2["Openingdate"]));
+	content += compareDataDom("建築年月日", dateValue(nursery1["OpeningDate"]), dateValue(nursery2["OpeningDate"]));
 	// 園庭広さ
 	var playground1 = nursery1["Playground"] ? nursery1["Playground"] + '㎡' : null;
 	var playground2 = nursery2["Playground"] ? nursery2["Playground"] + '㎡' : null;

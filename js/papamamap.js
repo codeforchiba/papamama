@@ -575,11 +575,11 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + competition + '倍 (2016年4月入園時)</td>';
         content += '</tr>';
     }
-    var openingdate = feature.get('Openingdate');
-    if (openingdate != null) {
+    var openingDate = feature.get('OpeningDate');
+    if (openingDate != null) {
         content += '<tr>';
         content += '<th>建築年月日</th>';
-        content += '<td>' + dateValue(openingdate) + '</td>';
+        content += '<td>' + dateValue(openingDate) + '</td>';
         content += '</tr>';
     }
     var playground = feature.get('Playground');
