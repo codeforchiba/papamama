@@ -336,12 +336,12 @@ Papamamap.prototype.getPopupTitle = function(feature)
     title  = '[' + type + '] ';
     // 先取りプロジェクト or 保育ルーム
     if (type === '認可外保育施設'){
-        var sakidori_auth = feature.get('Sakidori_auth');
-        var hoikuroom_auth = feature.get('Hoikuroom_auth');
-        if (sakidori_auth === 'Y') {
+        var sakidori = feature.get('Sakidori');
+        var hoikuroom = feature.get('Hoikuroom');
+        if (sakidori === 'Y') {
             title += ' [先取りプロジェクト]';
         }
-        if (hoikuroom_auth === 'Y') {
+        if (hoikuroom === 'Y') {
             title += ' [保育ルーム]';
         }
     }
@@ -568,11 +568,11 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + cost + '</td>';
         content += '</tr>';
     }
-    var openingdate = feature.get('Openingdate');
-    if (openingdate != null) {
+    var openingDate = feature.get('OpeningDate');
+    if (openingDate != null) {
         content += '<tr>';
         content += '<th>建築年月日</th>';
-        content += '<td>' + dateValue(openingdate) + '</td>';
+        content += '<td>' + dateValue(openingDate) + '</td>';
         content += '</tr>';
     }
     var playground = feature.get('Playground');

@@ -368,12 +368,12 @@ $('#mainPage').on('pageshow', function() {
 			conditions['24H'] = 1;
 		}
 		// 先取りプロジェクト認定
-		if($('#Sakidori_auth').prop('checked')) {
-			conditions['Sakidori_auth'] = 1;
+		if($('#Sakidori').prop('checked')) {
+			conditions['Sakidori'] = 1;
 		}
 		// 保育ルーム認定
-		if($('#Hoikuroom_auth').prop('checked')) {
-			conditions['Hoikuroom_auth'] = 1;
+		if($('#Hoikuroom').prop('checked')) {
+			conditions['Hoikuroom'] = 1;
 		}
 		// こども園
 		if($('#Kodomo').prop('checked')) {
@@ -608,12 +608,12 @@ $('#compare-page').on('pageshow', function() {
 	var typeValue = function(nursery) {
 		var type = nursery["Type"];
 		if (type === '認可外保育施設'){
-			var sakidori_auth = nursery['Sakidori_auth'];
-			var hoikuroom_auth = nursery['Hoikuroom_auth'];
-			if (sakidori_auth === 'Y') {
+			var sakidori = nursery['Sakidori'];
+			var hoikuroom = nursery['Hoikuroom'];
+			if (sakidori === 'Y') {
 				type += ' （先取りプロジェクト）';
 			}
-			if (hoikuroom_auth === 'Y') {
+			if (hoikuroom === 'Y') {
 				type += ' （保育ルーム）';
 			}
 		}
@@ -702,7 +702,7 @@ $('#compare-page').on('pageshow', function() {
 	// その他経費
 	content += compareDataDom("その他経費", nursery1["Cost"], nursery2["Cost"]);
 	// 建築年月日
-	content += compareDataDom("建築年月日", dateValue(nursery1["Openingdate"]), dateValue(nursery2["Openingdate"]));
+	content += compareDataDom("建築年月日", dateValue(nursery1["OpeningDate"]), dateValue(nursery2["OpeningDate"]));
 	// 園庭広さ
 	var playground1 = nursery1["Playground"] ? nursery1["Playground"] + '㎡' : null;
 	var playground2 = nursery2["Playground"] ? nursery2["Playground"] + '㎡' : null;
