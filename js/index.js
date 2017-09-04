@@ -694,11 +694,15 @@ $('#compare-page').on('pageshow', function() {
 	// 送迎バス
 	content += compareBooleanDataDom("送迎バス", nursery1["Bus"], nursery2["Bus"], 'あり', 'なし');
 	// 制服
-	content += compareBooleanDataDom("制服", nursery1["Uniform"], nursery2["Uniform"], 'あり', 'なし');
+	content += compareDataDom("制服", nursery1["Uniform"], nursery2["Uniform"]);
 	// スモック
-	content += compareBooleanDataDom("スモック", nursery1["Smock"], nursery2["Smock"], 'あり', 'なし');
-	// 給食
-	content += compareBooleanDataDom("給食", nursery1["Lunch"], nursery2["Lunch"], 'あり<br>(年齢により、ない場合もあり)', 'なし');
+	content += compareDataDom("スモック", nursery1["Smock"], nursery2["Smock"]);
+	// 給食（3歳未満）
+	content += compareDataDom("給食（3歳未満）", nursery1["Lunch_u3"], nursery2["Lunch_u3"]);
+	// 給食（3歳以上）
+	content += compareDataDom("給食（3歳以上）", nursery1["Lunch_o3"], nursery2["Lunch_o3"]);
+	// 体操服
+	content += compareDataDom("体操服", nursery1["Trainingwear"], nursery2["Trainingwear"]);
 	// その他経費
 	content += compareDataDom("その他経費", nursery1["Cost"], nursery2["Cost"]);
 	// 建築年月日
