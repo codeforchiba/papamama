@@ -680,9 +680,9 @@ $('#compare-page').on('pageshow', function() {
 	// 定員
 	content += compareDataDom("定員", nursery1["Full"] ? nursery1["Full"] + '人' : null, nursery2["Full"] ? nursery2["Full"] + '人' : null);
 	// TEL
-	content += compareDataDom("TEL", nursery1["TEL"], nursery2["TEL"]);
+	content += compareDataDom("TEL", nursery1["Tel"], nursery2["Tel"]);
 	// FAX
-	content += compareDataDom("FAX", nursery1["FAX"], nursery2["FAX"]);
+	content += compareDataDom("FAX", nursery1["Fax"], nursery2["Fax"]);
 	// 住所
 	var adr1 = (nursery1["Address"] || "") + (nursery1["Address2"] || "" );
 	var adr2 = (nursery2["Address"] || "") + (nursery2["Address2"] || "" );

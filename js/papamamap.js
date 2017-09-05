@@ -351,7 +351,7 @@ Papamamap.prototype.getPopupTitle = function(feature)
     }
     var name = feature.get('名称') ? feature.get('名称') : feature.get('Name');
     title += '</br>' + name;
-    url = feature.get('url');
+    url = feature.get('Url');
     if(url !== null && url !='') {
         title = '<a href="' +url+ '" target="_blank">' + title + '</a>';
     }
@@ -497,14 +497,14 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + full + '人</td>';
         content += '</tr>';
     }
-    var tel = feature.get('TEL') ? feature.get('TEL') : feature.get('TEL');
+    var tel = feature.get('Tel');
     if (tel != null) {
         content += '<tr>';
         content += '<th>TEL</th>';
         content += '<td>' + tel + '</td>';
         content += '</tr>';
     }
-    var fax = feature.get('FAX') ? feature.get('FAX') : feature.get('FAX');
+    var fax = feature.get('Fax');
     if (fax != null) {
         content += '<tr>';
         content += '<th>FAX</th>';
