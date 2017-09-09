@@ -540,25 +540,39 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + bus + '</td>';
         content += '</tr>';
     }
-    var uniform = booleanValue(feature.get('Uniform'), 'あり', 'なし');
+    var uniform = feature.get('Uniform');
     if (uniform != null) {
         content += '<tr>';
         content += '<th>制服</th>';
         content += '<td>' + uniform + '</td>';
         content += '</tr>';
     }
-    var smock = booleanValue(feature.get('Smock'), 'あり', 'なし');
+    var smock = feature.get('Smock');
     if (smock != null) {
         content += '<tr>';
         content += '<th>スモック</th>';
         content += '<td>' + smock + '</td>';
         content += '</tr>';
     }
-    var lunch = booleanValue(feature.get('Lunch'), 'あり (年齢により、ない場合もあり)', 'なし');
-    if (lunch != null) {
+    var lunch_u3 = feature.get('Lunch_u3');
+    if (lunch_u3 != null) {
         content += '<tr>';
-        content += '<th>給食</th>';
-        content += '<td>' + lunch + '</td>';
+        content += '<th>給食（3歳未満）</th>';
+        content += '<td>' + lunch_u3 + '</td>';
+        content += '</tr>';
+    }
+    var lunch_o3 = feature.get('Lunch_o3');
+    if (lunch_o3 != null) {
+        content += '<tr>';
+        content += '<th>給食（3歳以上）</th>';
+        content += '<td>' + lunch_o3 + '</td>';
+        content += '</tr>';
+    }
+    var trainingwear = feature.get('Trainingwear');
+    if (trainingwear != null) {
+        content += '<tr>';
+        content += '<th>体操服</th>';
+        content += '<td>' + trainingwear + '</td>';
         content += '</tr>';
     }
     var cost = feature.get('Cost');
