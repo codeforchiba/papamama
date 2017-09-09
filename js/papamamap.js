@@ -589,11 +589,11 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + dateValue(openingDate) + '</td>';
         content += '</tr>';
     }
-    var playground = feature.get('Playground');
+    var playground = booleanValue(feature.get('Playground'), 'あり', 'なし');
     if (playground != null) {
         content += '<tr>';
-        content += '<th>園庭広さ</th>';
-        content += '<td>' + playground + '㎡</td>';
+        content += '<th>園庭</th>';
+        content += '<td>' + playground + '</td>';
         content += '</tr>';
     }
     var playroom = feature.get('Playroom');

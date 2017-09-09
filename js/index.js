@@ -707,10 +707,8 @@ $('#compare-page').on('pageshow', function() {
 	content += compareDataDom("その他経費", nursery1["Cost"], nursery2["Cost"]);
 	// 建築年月日
 	content += compareDataDom("建築年月日", dateValue(nursery1["OpeningDate"]), dateValue(nursery2["OpeningDate"]));
-	// 園庭広さ
-	var playground1 = nursery1["Playground"] ? nursery1["Playground"] + '㎡' : null;
-	var playground2 = nursery2["Playground"] ? nursery2["Playground"] + '㎡' : null;
-	content += compareDataDom("園庭広さ", playground1, playground2);
+	// 園庭
+	content += compareBooleanDataDom("園庭", nursery1["Playground"], nursery2["Playground"], 'あり', 'なし');
 	// 保育室広さ
 	var playroom1 = nursery1["Playroom"] ? nursery1["Playroom"] + '㎡' : null;
 	var playroom2 = nursery2["Playroom"] ? nursery2["Playroom"] + '㎡' : null;
