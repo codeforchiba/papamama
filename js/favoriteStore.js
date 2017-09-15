@@ -36,9 +36,9 @@ FavoriteStore.prototype.removeFavorite = function(feature) {
  */
 FavoriteStore.prototype.getId = function(feature) {
   if (feature.get) {
-    return feature.get('Add1') + feature.get('Add2');
+    return feature.get('Address') + feature.get('Address2');
   } else if (feature.properties) {
-    return feature.properties['Add1']+feature.properties['Add2']
+    return feature.properties['Address']+feature.properties['Address2']
   }
 }
 

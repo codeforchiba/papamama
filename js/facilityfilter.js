@@ -22,7 +22,7 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
     var Features = [];
     _features = _.filter(nurseryFacilities.features, function (item,idx) {
             var type = item.properties['種別'] ? item.properties['種別'] : item.properties['Type'];
-            if(type == "認可保育所" || type == "認可外" || type == "幼稚園") return true;
+            if(type == "認可保育施設" || type == "認可外保育施設" || type == "幼稚園") return true;
         });
     Array.prototype.push.apply(Features, _features);
 
@@ -133,9 +133,9 @@ FacilityFilter.prototype.getFilteredFeaturesGeoJson = function (conditions, nurs
         Features = Features.filter(filterfunc);
     }
     // 事業所内保育所
-    if(conditions['Shanai']) {
+    if(conditions['Shonai']) {
         filterfunc = function (item,idx) {
-            var shanai = item.properties['Shanai'];
+            var shanai = item.properties['Shonai'];
             if(shanai === 'Y') {
                 return true;
             }

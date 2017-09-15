@@ -179,14 +179,14 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
             projection: 'EPSG:3857',
             object: {
               type: facilitiesData.type,
-              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可外'})
+              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可外保育施設'})
             }
         }),
         name: 'layerNinkagai',
         style: nurseryStyleFunction
     });
     this.map.addLayer(layerNinkagai);
-    this.featureOverlays["認可外"] = layerNinkagai;
+    this.featureOverlays["認可外保育施設"] = layerNinkagai;
 
     // 認可
     var layerNinka = new ol.layer.Vector({
@@ -194,14 +194,14 @@ Papamamap.prototype.addNurseryFacilitiesLayer = function(facilitiesData)
             projection: 'EPSG:3857',
             object: {
               type: facilitiesData.type,
-              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可保育所'})
+              features: _.filter(facilitiesData.features, function(data) {return data.properties['Type'] === '認可保育施設'})
             }
         }),
         name: 'layerNinka',
         style: nurseryStyleFunction
     });
     this.map.addLayer(layerNinka);
-    this.featureOverlays["認可保育所"] = layerNinka;
+    this.featureOverlays["認可保育施設"] = layerNinka;
 };
 
 /**
@@ -335,13 +335,13 @@ Papamamap.prototype.getPopupTitle = function(feature)
     var type = feature.get('種別') ? feature.get('種別') : feature.get('Type');
     title  = '[' + type + '] ';
     // 先取りプロジェクト or 保育ルーム
-    if (type === '認可外'){
-        var sakidori_auth = feature.get('Sakidori_auth');
-        var hoikuroom_auth = feature.get('Hoikuroom_auth');
-        if (sakidori_auth === 'Y') {
+    if (type === '認可外保育施設'){
+        var sakidori = feature.get('Sakidori');
+        var hoikuroom = feature.get('Hoikuroom');
+        if (sakidori === 'Y') {
             title += ' [先取りプロジェクト]';
         }
-        if (hoikuroom_auth === 'Y') {
+        if (hoikuroom === 'Y') {
             title += ' [保育ルーム]';
         }
     }
@@ -351,7 +351,7 @@ Papamamap.prototype.getPopupTitle = function(feature)
     }
     var name = feature.get('名称') ? feature.get('名称') : feature.get('Name');
     title += '</br>' + name;
-    url = feature.get('url');
+    url = feature.get('Url');
     if(url !== null && url !='') {
         title = '<a href="' +url+ '" target="_blank">' + title + '</a>';
     }
@@ -386,7 +386,7 @@ Papamamap.prototype.getPopupContent = function(feature)
 
     var type = feature.get('種別') ? feature.get('種別') : feature.get('Type');
     var vacancy = feature.get('Vacancy');
-    if(type == "認可保育所" && vacancy != null) {
+    if(type == "認可保育施設" && vacancy != null) {
         content += '<tr>';
         content += '<th>欠員</th>';
         content += '<td>';
@@ -404,7 +404,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     }
 
     var kodomo = feature.get('Kodomo');
-    var shanai = feature.get('Shanai');
+    var shanai = feature.get('Shonai');
     if (kodomo === 'Y' || shanai === 'Y') {
         content += '<tr>';
         content += '<th>施設種別</th>';
@@ -473,7 +473,7 @@ Papamamap.prototype.getPopupContent = function(feature)
     // 千葉市版は証明書発行表示必要ないので、proofにnullを設定
     proof = null;
 
-    if(type == "認可外" && proof === 'Y') {
+    if(type == "認可外保育施設" && proof === 'Y') {
         content += '<tr>';
         content += '<th>監督基準</th>';
         content += '<td>';
@@ -497,22 +497,22 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + full + '人</td>';
         content += '</tr>';
     }
-    var tel = feature.get('TEL') ? feature.get('TEL') : feature.get('TEL');
+    var tel = feature.get('Tel');
     if (tel != null) {
         content += '<tr>';
         content += '<th>TEL</th>';
         content += '<td>' + tel + '</td>';
         content += '</tr>';
     }
-    var fax = feature.get('FAX') ? feature.get('FAX') : feature.get('FAX');
+    var fax = feature.get('Fax');
     if (fax != null) {
         content += '<tr>';
         content += '<th>FAX</th>';
         content += '<td>' + fax + '</td>';
         content += '</tr>';
     }
-    var add1 = feature.get('住所１') ? feature.get('住所１') : feature.get('Add1');
-    var add2 = feature.get('住所２') ? feature.get('住所２') : feature.get('Add2');
+    var add1 = feature.get('住所１') ? feature.get('住所１') : feature.get('Address');
+    var add2 = feature.get('住所２') ? feature.get('住所２') : feature.get('Address2');
     if (add1 != null || add2 != null) {
         content += '<tr>';
         content += '<th>住所</th>';
@@ -540,25 +540,39 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + bus + '</td>';
         content += '</tr>';
     }
-    var uniform = booleanValue(feature.get('Uniform'), 'あり', 'なし');
+    var uniform = feature.get('Uniform');
     if (uniform != null) {
         content += '<tr>';
         content += '<th>制服</th>';
         content += '<td>' + uniform + '</td>';
         content += '</tr>';
     }
-    var smock = booleanValue(feature.get('Smock'), 'あり', 'なし');
+    var smock = feature.get('Smock');
     if (smock != null) {
         content += '<tr>';
         content += '<th>スモック</th>';
         content += '<td>' + smock + '</td>';
         content += '</tr>';
     }
-    var lunch = booleanValue(feature.get('Lunch'), 'あり (年齢により、ない場合もあり)', 'なし');
-    if (lunch != null) {
+    var lunch_u3 = feature.get('Lunch_u3');
+    if (lunch_u3 != null) {
         content += '<tr>';
-        content += '<th>給食</th>';
-        content += '<td>' + lunch + '</td>';
+        content += '<th>給食（3歳未満）</th>';
+        content += '<td>' + lunch_u3 + '</td>';
+        content += '</tr>';
+    }
+    var lunch_o3 = feature.get('Lunch_o3');
+    if (lunch_o3 != null) {
+        content += '<tr>';
+        content += '<th>給食（3歳以上）</th>';
+        content += '<td>' + lunch_o3 + '</td>';
+        content += '</tr>';
+    }
+    var trainingwear = feature.get('Trainingwear');
+    if (trainingwear != null) {
+        content += '<tr>';
+        content += '<th>体操服</th>';
+        content += '<td>' + trainingwear + '</td>';
         content += '</tr>';
     }
     var cost = feature.get('Cost');
@@ -568,25 +582,18 @@ Papamamap.prototype.getPopupContent = function(feature)
         content += '<td>' + cost + '</td>';
         content += '</tr>';
     }
-    var competition = feature.get('Competition');
-    if (competition != null) {
-        content += '<tr>';
-        content += '<th>申込倍率</th>';
-        content += '<td>' + competition + '倍 (2016年4月入園時)</td>';
-        content += '</tr>';
-    }
-    var openingdate = feature.get('Openingdate');
-    if (openingdate != null) {
+    var openingDate = feature.get('OpeningDate');
+    if (openingDate != null) {
         content += '<tr>';
         content += '<th>建築年月日</th>';
-        content += '<td>' + dateValue(openingdate) + '</td>';
+        content += '<td>' + dateValue(openingDate) + '</td>';
         content += '</tr>';
     }
-    var playground = feature.get('Playground');
+    var playground = booleanValue(feature.get('Playground'), 'あり', 'なし');
     if (playground != null) {
         content += '<tr>';
-        content += '<th>園庭広さ</th>';
-        content += '<td>' + playground + '㎡</td>';
+        content += '<th>園庭</th>';
+        content += '<td>' + playground + '</td>';
         content += '</tr>';
     }
     var playroom = feature.get('Playroom');

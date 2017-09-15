@@ -248,12 +248,12 @@ $('#mainPage').on('pageshow', function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 認可保育所チェックボックスのイベント設定
+	// 認可保育施設チェックボックスのイベント設定
 	$('#cbNinka').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
 
-	// 認可外保育所チェックボックスのイベント設定
+	// 認可外保育施設チェックボックスのイベント設定
 	$('#cbNinkagai').click(function() {
 		papamamap.switchLayer(this.id, $(this).prop('checked'));
 	});
@@ -368,20 +368,20 @@ $('#mainPage').on('pageshow', function() {
 			conditions['24H'] = 1;
 		}
 		// 先取りプロジェクト認定
-		if($('#Sakidori_auth').prop('checked')) {
-			conditions['Sakidori_auth'] = 1;
+		if($('#Sakidori').prop('checked')) {
+			conditions['Sakidori'] = 1;
 		}
 		// 保育ルーム認定
-		if($('#Hoikuroom_auth').prop('checked')) {
-			conditions['Hoikuroom_auth'] = 1;
+		if($('#Hoikuroom').prop('checked')) {
+			conditions['Hoikuroom'] = 1;
 		}
 		// こども園
 		if($('#Kodomo').prop('checked')) {
 			conditions['Kodomo'] = 1;
 		}
 		// 事業所内保育所
-		if($('#Shanai').prop('checked')) {
-			conditions['Shanai'] = 1;
+		if($('#Shonai').prop('checked')) {
+			conditions['Shonai'] = 1;
 		}
 
 		// フィルター適用時
@@ -607,13 +607,13 @@ $('#compare-page').on('pageshow', function() {
 	// 種別 + 先取りプロジェクト認定 + 保育ルーム認定
 	var typeValue = function(nursery) {
 		var type = nursery["Type"];
-		if (type === '認可外'){
-			var sakidori_auth = nursery['Sakidori_auth'];
-			var hoikuroom_auth = nursery['Hoikuroom_auth'];
-			if (sakidori_auth === 'Y') {
+		if (type === '認可外保育施設'){
+			var sakidori = nursery['Sakidori'];
+			var hoikuroom = nursery['Hoikuroom'];
+			if (sakidori === 'Y') {
 				type += ' （先取りプロジェクト）';
 			}
-			if (hoikuroom_auth === 'Y') {
+			if (hoikuroom === 'Y') {
 				type += ' （保育ルーム）';
 			}
 		}
@@ -624,13 +624,13 @@ $('#compare-page').on('pageshow', function() {
 
 	// 欠員
 	var vacancy1 = null, vacancy2 = null;
-	if (nursery1["Type"] === "認可保育所") {
+	if (nursery1["Type"] === "認可保育施設") {
 		vacancy1 = booleanValue(nursery1["Vacancy"], '空きあり', '空きなし');
 		if (nursery1["VacancyDate"] != null) {
 				vacancy1 += "<br> (" + dateValue(nursery1["VacancyDate"]) + ")";
 		}
 	}
-	if (nursery2["Type"] === "認可保育所") {
+	if (nursery2["Type"] === "認可保育施設") {
 		vacancy2 = booleanValue(nursery2["Vacancy"], '空きあり', '空きなし');
 		if (nursery2["VacancyDate"] != null) {
 				vacancy2 += "<br> (" + dateValue(nursery2["VacancyDate"]) + ")";
@@ -639,9 +639,9 @@ $('#compare-page').on('pageshow', function() {
 	content += compareDataDom("欠員", vacancy1, vacancy2, '空きあり', '空きなし');
 	// 施設種別
 	var kodomo1  = nursery1["Kodomo"] === 'Y' ? '認定こども園' : "";
-	var shanai1 = nursery1["Shanai"] === 'Y' ? '事業所内保育所' : "";
+	var shanai1 = nursery1["Shonai"] === 'Y' ? '事業所内保育所' : "";
 	var kodomo2  = nursery2["Kodomo"] === 'Y' ? '認定こども園' : "";
-	var shanai2 = nursery2["Shanai"] === 'Y' ? '事業所内保育所' : "";
+	var shanai2 = nursery2["Shonai"] === 'Y' ? '事業所内保育所' : "";
 	content += compareDataDom("施設種別", kodomo1+shanai1 || null, kodomo2+shanai2 || null, "nursery-type");
 
 	// 時間
@@ -663,8 +663,8 @@ $('#compare-page').on('pageshow', function() {
 	// 24時間
 	content += compareBooleanDataDom("24時間", nursery1["H24"], nursery2["H24"], '対応', '未対応');
   // 監督基準
-	var proof1 = nursery1["Type"] === "認可外" ? nursery1["Proof"] : null;
-	var proof2 = nursery2["Type"] === "認可外" ? nursery2["Proof"] : null;
+	var proof1 = nursery1["Type"] === "認可外保育施設" ? nursery1["Proof"] : null;
+	var proof2 = nursery2["Type"] === "認可外保育施設" ? nursery2["Proof"] : null;
 	// 千葉市版は証明書発行表示必要ないので、proof1,2にnullを設定
 	proof1 = null;
 	proof2 = null;
@@ -680,12 +680,12 @@ $('#compare-page').on('pageshow', function() {
 	// 定員
 	content += compareDataDom("定員", nursery1["Full"] ? nursery1["Full"] + '人' : null, nursery2["Full"] ? nursery2["Full"] + '人' : null);
 	// TEL
-	content += compareDataDom("TEL", nursery1["TEL"], nursery2["TEL"]);
+	content += compareDataDom("TEL", nursery1["Tel"], nursery2["Tel"]);
 	// FAX
-	content += compareDataDom("FAX", nursery1["FAX"], nursery2["FAX"]);
+	content += compareDataDom("FAX", nursery1["Fax"], nursery2["Fax"]);
 	// 住所
-	var adr1 = (nursery1["Add1"] || "") + (nursery1["Add2"] || "" );
-	var adr2 = (nursery2["Add1"] || "") + (nursery2["Add2"] || "" );
+	var adr1 = (nursery1["Address"] || "") + (nursery1["Address2"] || "" );
+	var adr2 = (nursery2["Address"] || "") + (nursery2["Address2"] || "" );
 	content += compareDataDom("住所", adr1, adr2);
 	// 設置者
 	content += compareDataDom("設置者", nursery1["Owner"], nursery2["Owner"]);
@@ -694,23 +694,21 @@ $('#compare-page').on('pageshow', function() {
 	// 送迎バス
 	content += compareBooleanDataDom("送迎バス", nursery1["Bus"], nursery2["Bus"], 'あり', 'なし');
 	// 制服
-	content += compareBooleanDataDom("制服", nursery1["Uniform"], nursery2["Uniform"], 'あり', 'なし');
+	content += compareDataDom("制服", nursery1["Uniform"], nursery2["Uniform"]);
 	// スモック
-	content += compareBooleanDataDom("スモック", nursery1["Smock"], nursery2["Smock"], 'あり', 'なし');
-	// 給食
-	content += compareBooleanDataDom("給食", nursery1["Lunch"], nursery2["Lunch"], 'あり<br>(年齢により、ない場合もあり)', 'なし');
+	content += compareDataDom("スモック", nursery1["Smock"], nursery2["Smock"]);
+	// 給食（3歳未満）
+	content += compareDataDom("給食（3歳未満）", nursery1["Lunch_u3"], nursery2["Lunch_u3"]);
+	// 給食（3歳以上）
+	content += compareDataDom("給食（3歳以上）", nursery1["Lunch_o3"], nursery2["Lunch_o3"]);
+	// 体操服
+	content += compareDataDom("体操服", nursery1["Trainingwear"], nursery2["Trainingwear"]);
 	// その他経費
 	content += compareDataDom("その他経費", nursery1["Cost"], nursery2["Cost"]);
-	// 前回申込倍率
-	var competition1 = nursery1["Competition"] ? nursery1["Competition"] + '倍<br>(2016年4月入園時)' : null;
-	var competition2 = nursery2["Competition"] ? nursery2["Competition"] + '倍<br>(2016年4月入園時)' : null;
-	content += compareDataDom("申込倍率", competition1, competition2);
 	// 建築年月日
-	content += compareDataDom("建築年月日", dateValue(nursery1["Openingdate"]), dateValue(nursery2["Openingdate"]));
-	// 園庭広さ
-	var playground1 = nursery1["Playground"] ? nursery1["Playground"] + '㎡' : null;
-	var playground2 = nursery2["Playground"] ? nursery2["Playground"] + '㎡' : null;
-	content += compareDataDom("園庭広さ", playground1, playground2);
+	content += compareDataDom("建築年月日", dateValue(nursery1["OpeningDate"]), dateValue(nursery2["OpeningDate"]));
+	// 園庭
+	content += compareBooleanDataDom("園庭", nursery1["Playground"], nursery2["Playground"], 'あり', 'なし');
 	// 保育室広さ
 	var playroom1 = nursery1["Playroom"] ? nursery1["Playroom"] + '㎡' : null;
 	var playroom2 = nursery2["Playroom"] ? nursery2["Playroom"] + '㎡' : null;
