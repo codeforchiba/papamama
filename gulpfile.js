@@ -151,24 +151,24 @@ gulp.task("data-nursery-bk", (cb) => {
       json.features.forEach((feature) => {
         feature.properties.Name = feature.properties.P14_007;
         feature.properties.Label = feature.properties.P14_007;
-        feature.properties.Add1 = feature.properties.P14_002;
-        feature.properties.Add2 = feature.properties.P14_003;
+        feature.properties.Address = feature.properties.P14_002;
+        feature.properties.Address2 = feature.properties.P14_003;
         var code = feature.properties.P14_006;
         switch (code) {
           case '801':
-          feature.properties.Type = '認可保育所'
+          feature.properties.Type = '認可保育施設'
           break;
           case '802':
-          feature.properties.Type = '認可保育所'
+          feature.properties.Type = '認可保育施設'
           break;
           case '803':
-          feature.properties.Type = '認可外'
+          feature.properties.Type = '認可外保育施設'
           break;
           case '804':
           feature.properties.Type = '幼稚園'
           break;
           case '805':
-          feature.properties.Type = '認可保育所'
+          feature.properties.Type = '認可保育施設'
           break;
         }
       });
@@ -190,7 +190,7 @@ gulp.task("data-nursery", (cb) => {
 
       var dataList = [];
       fs.createReadStream(fileName)
-      .pipe(iconv.decodeStream('shift_jis'))
+      .pipe(iconv.decodeStream('utf-8'))
       .pipe(csv.parse())
       .pipe(csv.transform(function(record){
         var json = {};
