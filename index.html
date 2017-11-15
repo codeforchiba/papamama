@@ -73,7 +73,10 @@
                     <a class="typeform-share link ui-btn ui-icon-heart ui-btn-icon-right" href="https://codeforchiba.typeform.com/to/ozCQwu" data-mode="1" target="_blank">フィードバックする</a>
 
                     <a id="btnHelp" href="#helpDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-question ui-btn-icon-notext">help</a>
+
+                    <span class="target-year-title"><span class="target-year"></span>年新年度版</span>
                 </fieldset>
+
             </div>
             <div id="map" class="map"></div>
             <div id="popup" data-role="popup" data-theme="a" class="ol-popup" style="max-height: 200px;">
@@ -452,7 +455,7 @@
         	return null
         }
         // 来年度版フラグ
-        var isNextYear = (getQueryVariable('year') === 'next');
+        var targetYear = getQueryVariable('year');
         </script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.4/jquery.mobile.min.js" type="text/javascript"></script>
@@ -466,6 +469,12 @@
         <script src="js/papamamap.js" type="text/javascript"></script>
         <script src="js/favoriteStore.js" type="text/javascript"></script>
         <script src="js/index.js" type="text/javascript"></script>
+        <script>
+        if(targetYear != null) {
+          $('.target-year').text(targetYear);
+          $('.target-year-title').show();
+        }
+        </script>
         <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
         <div id="marker"></div>
         <div id="markerTitle"></div>

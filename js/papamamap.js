@@ -212,7 +212,7 @@ Papamamap.prototype.loadNurseryFacilitiesJson = function(successFunc)
 {
     var d = new $.Deferred();
     $.getJSON(
-        "data/nurseryFacilities" + (isNextYear ? '_next' : '') + ".geojson",
+        "data/nurseryFacilities" + (targetYear != null ? '_' + targetYear : '') + ".geojson",
         function(data) {
             successFunc(data);
             d.resolve();
