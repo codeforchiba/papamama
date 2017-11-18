@@ -69,6 +69,22 @@ Node.js の実行環境をインストールした後、gulp をインストー�
 
     $ gulp updatedata
 
+## アプリケーションに必要なデータの内、園情報だけ作成方法
+
+### 通常版データ
+
+園情報をdata_orgディレクトリにnurseryData.csvという名前で保存
+以下のコマンドを実行することで data ディレクトリに nurseryFacilities.geojson データが生成されます。
+
+    $ gulp data-nursery
+
+### 2018新年度版データ
+
+園情報をdata_orgディレクトリにnurseryData_2018.csvという名前で保存
+以下のコマンドを実行することで data ディレクトリに nurseryFacilities_2018.geojson データが生成されます。
+
+    $ gulp data-nursery --year 2018
+
 ## ライセンスについて
 
 このソフトウェアは、MITライセンスでのもとで公開されています。[こちら](LICENSE.txt) をご覧ください。
