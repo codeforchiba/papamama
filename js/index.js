@@ -215,6 +215,17 @@ $('#mainPage').on('pageshow', function() {
 				$addFavoriteBtn.show();
 				$removeFavoriteBtn.hide();
 			});
+			// 開園情報
+			var remarks = feature.get('Remarks');
+			var $newOpen = $('#new-open');
+			var $newOpenTitle = $('#new-open-title');
+			if (remarks != null && /開園/.test(remarks)) {
+				$newOpen.show();
+				$newOpenTitle.text(remarks);
+			} else {
+				$newOpen.hide();
+				$newOpenTitle.text(null);
+			}
 
 			var height = $('#popup').css('max-height', '').height();
 			$('#popup').css('top', - height / 2).show();
