@@ -8,6 +8,8 @@ var csv = require('csv');
 var iconv = require('iconv-lite');
 var sutil = require('line-stream-util')
 var GeoJSON = require('geojson');
+var minimist = require('minimist');
+var argv = minimist(process.argv.slice(2));
 
 // ローカルサーバ起動
 gulp.task("serve", () => {
@@ -180,7 +182,8 @@ gulp.task("data-nursery-bk", (cb) => {
 
 // 保育園等のデータ更新(千葉市保育所データCSV)
 gulp.task("data-nursery", (cb) => {
-  var fileName = 'data_org/nurseryData.csv';
+  var fileName = 'data_org/nurseryData' + (argv.year ? '_' + argv.year : '') + '.csv';
+  console.log('use file:' + fileName);
   fs.createReadStream(fileName)
     .pipe(sutil.head(1)) // get head lines
     .pipe(sutil.split())
@@ -202,7 +205,9 @@ gulp.task("data-nursery", (cb) => {
       .on('data', function(data) {
         dataList.push(data)
       }).on('end', function(){
-        fs.writeFileSync( 'data/nurseryFacilities.geojson', JSON.stringify(GeoJSON.parse(dataList.slice(1), {Point: ['Y', 'X']})) );
+        var output = 'data/nurseryFacilities' + (argv.year ? '_' + argv.year : '') + '.geojson';
+        console.log('output file:' + output);
+        fs.writeFileSync(output, JSON.stringify(GeoJSON.parse(dataList.slice(1), {Point: ['Y', 'X']})) );
         cb();
       });
     });

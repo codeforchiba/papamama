@@ -325,6 +325,24 @@ div#favorite-list .ui-controlgroup-vertical .ui-controlgroup-controls .ui-btn.ui
 	color: rgba(223,107,34,1);
 }
 
+.target-year-title {
+	float: left;
+	font-weight: bold;
+  font-size: 22px;
+  padding: 3px 10px;
+	text-shadow: 1px 1px 3px #000;
+	color: #efaf27;
+}
+
+#new-open {
+	text-align: center;
+	background-color: #efaf27;
+	padding: 7px 0;
+  margin-top: -0.5em;
+  margin-bottom: 0.5em;
+	font-weight: bold;
+}
+
 @media (max-width: 767px) {
 	#helpDialog .compare .row > div:not(:last-child) {
 		margin-bottom: 30px;
@@ -334,5 +352,8 @@ div#favorite-list .ui-controlgroup-vertical .ui-controlgroup-controls .ui-btn.ui
 		left: 50%;
 		content: "\e094";
 		margin-left: -15px;
+	}
+	.target-year-title {
+		 clear:both;
 	}
 }
