@@ -325,7 +325,7 @@ div#favorite-list .ui-controlgroup-vertical .ui-controlgroup-controls .ui-btn.ui
 	color: rgba(223,107,34,1);
 }
 
-.target-year-title {
+#display-title {
 	float: left;
 	font-weight: bold;
   font-size: 22px;
@@ -334,6 +334,11 @@ div#favorite-list .ui-controlgroup-vertical .ui-controlgroup-controls .ui-btn.ui
 	color: #efaf27;
 }
 
+#change-view {
+	float: left;
+  text-decoration: underline;
+  line-height: 35px;
+}
 #new-open {
 	text-align: center;
 	background-color: #efaf27;
