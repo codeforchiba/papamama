@@ -38,7 +38,7 @@
 
         var title = document.getElementsByTagName('title')[0];
         var description = document.getElementById('description-tag');
-        var suffix = '（通常版）';
+        var suffix = '（通年版）';
         if(targetYear != null) {
           suffix = '（' + targetYear + '年新年度版）';
         }
@@ -484,9 +484,9 @@
         <script>
         if(targetYear != null) {
           $('#display-title').text(targetYear + "年新年度版");
-          $('#change-view').text('通常版はこちら').click(function(){location.href="/"});
+          $('#change-view').text('通年版はこちら').click(function(){location.href="/"});
         } else {
-          $('#display-title').text("通常版");
+          $('#display-title').text("通年版");
           $('#change-view').text('2018年新年度版はこちら').click(function(){location.href="/?year=2018"});
         }
         </script>
