@@ -330,7 +330,7 @@ div#favorite-list .ui-controlgroup-vertical .ui-controlgroup-controls .ui-btn.ui
 	font-weight: bold;
   font-size: 22px;
   padding: 3px 10px;
-	text-shadow: 1px 1px 3px #000;
+	text-shadow: 1px 1px 0px #000;
 	color: #efaf27;
 }
 
