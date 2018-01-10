@@ -161,7 +161,7 @@
                         <label for="Shonai">事業所内保育所</label>
                         <input type="checkbox" id="Shonai" class="filtercb">
                     </fieldset>
-                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="vacancy-fieldset">
                         <label for="Vacancy">空きあり</label>
                         <input type="checkbox" id="Vacancy" class="filtercb">
                     </fieldset>
@@ -485,6 +485,7 @@
         if(targetYear != null) {
           $('#display-title').text(targetYear + "年新年度版");
           $('#change-view').text('通年版はこちら').click(function(){location.href="/"});
+          $('#vacancy-fieldset').hide();
         } else {
           $('#display-title').text("通年版");
           $('#change-view').text('2018年新年度版はこちら').click(function(){location.href="/?year=2018"});
