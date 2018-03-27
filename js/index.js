@@ -4,6 +4,8 @@ var init_center_coords = [135.8200, 34.6800];
 // Bing APIのキー
 var bing_api_key = 'AspGLWLrdwky_u--qQ7nNRFJUqoLNLjpqBu5QAGhgBm7IRONe0d6QJSvqg9FksI2';
 
+var mierune_api_key = '227f1b7fbce77ee8c009224272abc90d4ec18f4b1e114444cb7cba4513aa9aff29a4673e2501c1015e91755bc7142034acb3d2c0957040a51279e9ec39';
+
 // map
 var map;
 
@@ -40,6 +42,19 @@ var mapServerList = {
 				ol.source.OSM.ATTRIBUTION,
 			]
 		})
+	},
+        'mierune-normal': {
+	    label: "MIERUNE",
+	    source_type: "xyz",
+	    source: new ol.source.XYZ({
+		attributions: [
+		    new ol.Attribution({
+			html: "Maptiles by <a href='http://mierune.co.jp/' target='_blank'>MIERUNE</a>, under CC BY. Data by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors, under ODbL."
+		    })
+		],
+  	        url: 'https://tile.cdn.mierune.co.jp/styles/normal/{z}/{x}/{y}.png?key=227f1b7fbce77ee8c009224272abc90d4ec18f4b1e114444cb7cba4513aa9aff29a4673e2501c1015e91755bc7142034acb3d2c0957040a51279e9ec39',
+	        projection: "EPSG:3857"
+	    })
 	},
         'bing-road': {
 		label: "Bing",
