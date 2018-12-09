@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta property="og:type" content="product">
         <meta property="og:image" content="http://papamama.code4chiba.org/image/papamama.png">
-        <meta id="description-tag" name="description" content="千葉市の保育園一覧が表示されているマップ">
-        <title>ちば保育園マップ by Code for Chiba</title>
+        <meta id="description-tag" name="description" content="千葉市の保育園一覧が表示されているマップ（通年版）">
+        <title>ちば保育園マップ by Code for Chiba（通年版）</title>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ol3/3.2.0/ol.min.css" type="text/css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-mobile/1.4.4/jquery.mobile.min.css">
@@ -33,17 +33,6 @@
         	}
         	return null
         }
-        // 来年度版フラグ
-        var targetYear = getQueryVariable('year');
-
-        var title = document.getElementsByTagName('title')[0];
-        var description = document.getElementById('description-tag');
-        var suffix = '（通年版）';
-        if(targetYear != null) {
-          suffix = '（' + targetYear + '年新年度版）';
-        }
-        title.textContent =  title.textContent + suffix;
-        description.content = description.content + suffix;
         </script>
     </head>
     <body>
@@ -99,7 +88,7 @@
 
                     <a id="btnHelp" href="#helpDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-icon-question ui-btn-icon-notext">help</a>
 
-                    <span id="display-title"></span>
+                    <span id="display-title">通年版</span>
                     <a id="change-view" href="#"></a>
                 </fieldset>
 
@@ -481,16 +470,6 @@
         <script src="js/papamamap.js" type="text/javascript"></script>
         <script src="js/favoriteStore.js" type="text/javascript"></script>
         <script src="js/index.js" type="text/javascript"></script>
-        <script>
-        if(targetYear != null) {
-          $('#display-title').text(targetYear + "年新年度版");
-          $('#change-view').text('通年版はこちら').click(function(){location.href="/"});
-          $('#vacancy-fieldset').hide();
-        } else {
-          $('#display-title').text("通年版");
-          $('#change-view').text('2018年新年度版はこちら').click(function(){location.href="/?year=2018"});
-        }
-        </script>
         <script>(function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id='typef_orm',b='https://s3-eu-west-1.amazonaws.com/share.typeform.com/';if(!gi.call(d,id)){js=ce.call(d,'script');js.id=id;js.src=b+'share.js';q=gt.call(d,'script')[0];q.parentNode.insertBefore(js,q)}})()</script>
         <div id="marker"></div>
         <div id="markerTitle"></div>
