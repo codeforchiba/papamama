@@ -85,6 +85,17 @@ Node.js の実行環境をインストールした後、gulp をインストー�
 
     $ gulp data-nursery --year 2018
 
+### リリース手順
+
+* 各featureブランチからdevelopブランチにPRを作成し、mergeする
+	* see https://github.com/codeforchiba/papamama/pull/143
+* developブランチからmasterブランチにPRを作成し、mergeする
+	* see https://github.com/codeforchiba/papamama/pull/144
+* masterブランチにtagをpushする
+	* tagのバージョンはmasterブランチの最新のtagをカウントアップする(v1.3.7→v1.3.8)
+* masterブランチからgh-pagesブランチにPRを作成しmergeする
+	* see https://github.com/codeforchiba/papamama/pull/145
+
 ## ライセンスについて
 
 このソフトウェアは、MITライセンスでのもとで公開されています。[こちら](LICENSE.txt) をご覧ください。
