@@ -31,6 +31,7 @@ gulp.task("updatedata", (cb) => {
 });
 
 // 行政区域のデータ更新
+// http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v2_3.html
 gulp.task("data-wards", (cb) => {
   shapefile.read('data_org/N03-15_12_150101.shp', {encoding: 'shift_jis'}, (err, json) => {
     if(err) {
@@ -47,6 +48,7 @@ gulp.task("data-wards", (cb) => {
 });
 
 // 中学校区域のデータ更新
+// http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32.html
 gulp.task("data-middleSchool", (cb) => {
   shapefile.read('data_org/A32-13_12.shp', {encoding: 'shift_jis'}, (err, json) => {
     if(err) {
@@ -63,6 +65,7 @@ gulp.task("data-middleSchool", (cb) => {
 });
 
 // 小学校区域のデータ更新
+// http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27.html
 gulp.task("data-elementary", (cb) => {
   shapefile.read('data_org/A27-10_12-g_SchoolDistrict.shp', {encoding: 'shift_jis'}, (err, json) => {
     if(err) {
@@ -79,6 +82,7 @@ gulp.task("data-elementary", (cb) => {
 });
 
 // 学校のデータ作成
+// http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29.html
 gulp.task("data-school", (cb) => {
   shapefile.read('data_org/p29-13_12.shp', {encoding: 'shift_jis'}, (err, json) => {
     if(err) {
@@ -105,6 +109,7 @@ gulp.task("data-school", (cb) => {
 });
 
 // 駅のデータ更新
+// http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-v2_3.html
 gulp.task("data-station", (cb) => {
   shapefile.read('data_org/N02-14_Station.shp', {encoding: 'shift_jis'}, (err, json) => {
     if(err) {
@@ -137,6 +142,7 @@ gulp.task("data-station", (cb) => {
 });
 
 // 保育園等のデータ更新(国土数値情報　ダウンロードサービスベース)
+// http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P14.html
 gulp.task("data-nursery-bk", (cb) => {
   shapefile.read('data_org/P14_12.shp', {encoding: 'shift_jis'}, (err, json) => {
     if(err) {
@@ -181,6 +187,7 @@ gulp.task("data-nursery-bk", (cb) => {
 });
 
 // 保育園等のデータ更新(千葉市保育所データCSV)
+// https://raw.githubusercontent.com/codeforchiba/papamama/develop/data_org/nurseryData.csv
 gulp.task("data-nursery", (cb) => {
   var fileName = 'data_org/nurseryData' + (argv.year ? '_' + argv.year : '') + '.csv';
   console.log('use file:' + fileName);
